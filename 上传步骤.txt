@@ -1,0 +1,23 @@
+git上传文件流程 
+    选中本地目录 右键--->git bach here
+			1.进入到命令行界面 输入git init 把这个目录设置为本地仓库 此时会生成一个.git文件(默认为隐藏格式)
+			2.把你要上传的文件拷贝到这个目录下面 
+			3.通过git add命令加文件加入到仓库 可通过git status命令查看状态
+			4.使用git commit -m "这里是提交信息"
+	    由于本地Git仓库和Github仓库之间的传输是通过SSH加密的，所以连接时需要设置一下 
+		查看是否有ssh key：
+			1.win键 找到git bash  输入 ~/.ssh文件下 
+			2.在输入 ls命令 查看是否有id_rsa和id_rsa.pub这两个文件
+			3.有就跳过创建ssh key步骤
+		如果没有SSH KEY则还需要创建ssh key
+			过程为
+			     1.  输入 $ ssh-keygen -t rsa -C "1600965357@qq.com"命令 这时候你会在：C:\Users\watermelon\.ssh
+				下面找到	id_rsa和id_rsa.pub这两个文件将id_rsa.pub文件内容拷贝
+			     2.GitHub点击右上角图标 选中settings-->SSH and GPG keys-->右上角new SSH key
+				-->title 自己写 key 填写刚刚拷贝的内容
+	在GitHub上创建一个git仓库
+		你可以直接点New repository来创建
+		注意！！！如果Initialize this repository with a README（就是创建仓库的时候自动给你创建一个README文件）
+	那你在push之前要先执行：
+		$ git pull --rebase origin master
+	然后才是$ git push -u origin master；
